@@ -1,5 +1,5 @@
 import { MeshReflectorMaterial } from "@react-three/drei";
-import { useLoader } from "@react-three/fiber";
+import { useLoader, useFrame } from "@react-three/fiber";
 import { useEffect } from "react";
 import { RepeatWrapping, TextureLoader, SRGBColorSpace } from "three";
 
@@ -17,8 +17,14 @@ export function Ground() {
     });
 
     // Apply color space to textures
-    normal.colorSpace = SRGBColorSpace;
+    roughness.colorSpace = SRGBColorSpace;
   }, [normal, roughness]);
+
+  useFrame((state, delta) => {
+    let t = -state.clock.getElapsedTime() * 0.68;
+    roughness.offset.set(0, t);
+    normal.offset.set(0, t);
+  });
 
   return (
     <mesh rotation-x={-Math.PI * 0.5} castShadow receiveShadow>
