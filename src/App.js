@@ -8,7 +8,7 @@ import {
   PerspectiveCamera,
 } from "@react-three/drei";
 import { ACESFilmicToneMapping, PCFSoftShadowMap } from "three";
-import Ground from "./Ground.js";
+import { Ground } from "./Ground";
 import { Car } from "./Car.js";
 import { Rings } from "./Rings.js";
 import { Boxes } from "./Boxes.js";
